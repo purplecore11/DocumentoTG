@@ -1,0 +1,190 @@
+\documentclass{report}
+%Configuration page
+\usepackage{geometry}
+\geometry{
+	width=21.59cm, 
+	height=27.94cm,
+	left=3.17cm,
+	right=3.81cm,
+	bottom=3.81cm,
+	top=3.17cm,
+}
+
+%...............................................................
+%Tamaño para titulos de chapters,secciones,subsecciones
+\usepackage{sectsty}
+\usepackage{titlesec}
+\sectionfont{\large}
+\subsectionfont{\large}
+%...............................................................
+%figures and Tables 
+\usepackage{caption}
+\usepackage{subcaption}
+%...............................................................
+%Using Packages (general)
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc, url}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{times} %Use Font Times New Roman 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\graphicspath{{figures/}} %Import images from folder
+\usepackage{float}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[toc,page]{appendix}
+%...............................................................
+%Comments
+\usepackage{comment}%Comments in file  
+\usepackage[colorinlistoftodos]{todonotes}%Comments in pdf
+%...............................................................
+%Generic text packages 
+\usepackage{blindtext}
+\usepackage{lipsum}
+%...............................................................
+%Change tables, contents, figures parameters 
+\usepackage{tocloft}
+\usepackage{tocenter}
+\usepackage{gensymb} %Degree Symbol
+\usepackage{textcomp} %Symbols 
+\usepackage{chngpage}% allows for temporary adjustment of side margins
+%...............................................................
+%Page style
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Pontificia Universidad Javeriana}
+\rhead{Memoria de Trabajo de Grado - Profundización}
+\rfoot{Página \thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+%...............................................................
+%Redefine plain (chapters, tables, appendix)
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[OL]{Pontificia Universidad Javeriana}
+\fancyhead[OR]{Memoria de Trabajo de Grado - Profundización}
+\fancyfoot[R]{Página \thepage}
+\fancyfoot[L]
+}
+%...............................................................
+% To make cites and references
+\usepackage[hidelinks,pdfusetitle,pdfdisplaydoctitle]{hyperref} 
+\usepackage{doi}
+\renewcommand{\doitext}{}
+\usepackage{natbib} %Package to cite references
+%...............................................................
+% To make pretty tables
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{dcolumn}
+\usepackage{array}
+%Control de terminaciones de linea en párrafo
+\hyphenpenalty=100000   % No se dividen las palabras al terminar una línea
+\sloppy % Ayuda a que las cosas no se salgan de los márgenes.
+\raggedbottom % Hace que el tamaño de las páginas llegue hasta donde llegue el texto, no agrega espacio vertical
+
+%----------------------------------------------------------------------------%
+\begin{document}
+
+    \include{Portada}
+    \include{Contraportada1}
+    \include{Contraportada2}
+    \setcounter{page}{4}
+%..................................	
+	%Sections 
+	\begin{flushleft}
+		\phantomsection \label{artículo}
+		\vspace*{2cm}
+		\large{\textbf{Artículo 23 de la Resolución No. 1 de Junio de 1946}}
+	\end{flushleft}
+	\input{Resolución}
+	\clearpage
+
+%..................................	
+	%Sections 
+	\begin{center}
+		\phantomsection \label{glads}
+		\large{\textbf{AGRADECIMIENTOS}}
+	\end{center}
+	\input{Agradecimientos}
+	\clearpage
+%..................................	
+    \include{Resumen}
+%..................................	
+    \begin{center}
+		\phantomsection \label{resumenejecutivo}
+		\large{\textbf{RESUMEN EJECUTIVO}}
+	\end{center}
+	\input{Resumen_Ejecutivo}
+	\clearpage
+
+%..................................	
+    \setlength{\cftbeforetoctitleskip}{-0.3cm}
+	\renewcommand{\cfttoctitlefont}{\large}
+	\renewcommand{\contentsname}{\textbf{CONTENIDO}}
+	
+	\tableofcontents 
+	\newpage
+	\renewcommand\cftloftitlefont{\large}
+	\renewcommand{\listfigurename}{\textbf{ÍNDICE DE FIGURAS}}
+	%\listoffigures
+	{%
+		\let\oldnumberline\numberline%
+		\renewcommand{\numberline}{\figurename~\oldnumberline}%
+		\listoffigures%
+	}
+	\newpage
+	\renewcommand\cftlottitlefont{\large}
+	\renewcommand{\listtablename}{\textbf{ÍNDICE DE TABLAS}}
+	{%
+		\let\oldnumberline\numberline%
+		\renewcommand{\numberline}{\tablename~\oldnumberline}%
+		\listoftables%
+	}
+	\newpage
+%..................................	
+	%\pagenumbering{arabic} % Comienza la numeración arábiga (números normales)
+	%\setcounter{page}{1} % Comienza el contador de páginas en 1
+%..................................	
+	\chapternumberfont{\huge}
+	\chaptertitlefont{\large}
+	\chapter{INTRODUCCIÓN} \label{intr}
+	\input{chapters/intro}
+%..................................	
+	\chapter{MARCO TEÓRICO} \label{cap2}
+	\input{chapters/cap2}
+%..................................	
+	\chapter{MARCO TEÓRICO 2} \label{cap3}
+	\input{chapters/cap3}
+%..................................	
+	\chapter{MARCO GEOLÓGICO}
+	\input{chapters/cap4}
+%..................................	
+	\chapter{RESULTADOS}
+	\input{chapters/resultados}
+%..................................	
+	\chapter{DISCUSIÓN}
+	\input{chapters/discusion}
+%..................................	
+	\chapter{CONCLUSIÓN}
+	\input{chapters/conclusion}
+	\clearpage
+%..................................	
+	\addcontentsline{toc}{chapter}{REFERENCIAS}
+	\renewcommand{\bibname}{REFERENCIAS}
+	\bibliographystyle{apalike}
+	\setstretch{1}
+	\setlength{\bibsep}{2em plus 0.5ex}
+	\bibliography{references/papers} %Link a referencias
+	\clearpage
+%..................................	
+	\appendix
+	\renewcommand{\appendixname}{ANEXOS}
+	\renewcommand{\appendixpagename}{ANEXOS}
+	\renewcommand{\appendixtocname}{ANEXOS}
+	\addappheadtotoc	
+	\input{chapters/anexos}
+\end{document}
